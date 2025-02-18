@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "type": "入荷",
+        "date": "2025-02-01",
+        "unit": 10,
+        "quantity": 50,
+        "price": 120000,
+        "inventory": 50
+    },
+    {
+        "id": 2,
+        "type": "出荷",
+        "date": "2025-02-10",
+        "unit": 10,
+        "quantity": 10,
+        "price": 120000,
+        "inventory": 40
+    },
+    {
+        "id": 3,
+        "type": "入荷",
+        "date": "2025-02-02",
+        "unit": 10,
+        "quantity": 100,
+        "price": 15000,
+        "inventory": 100
+    },
+    {
+        "id": 4,
+        "type": "出荷",
+        "date": "2025-02-12",
+        "unit": 10,
+        "quantity": 30,
+        "price": 15000,
+        "inventory": 70
+    },
+    {
+        "id": 5,
+        "type": "入荷",
+        "date": "2025-02-03",
+        "unit": 10,
+        "quantity": 80,
+        "price": 25000,
+        "inventory": 80
+    }
+]

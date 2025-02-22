@@ -24,10 +24,10 @@ type InventoryData = {
 
 export default function Page({ params }: {
     //商品IDに当たる検索条件
-    params: { id: number }
+    params: { id: number },
 }) {
-    //読み見込データを保持
 
+    //読込データを保持
     const [product, setProduct] = useState<ProductData>({ id: 0, name: "", price: 0, description: "" });
     const [data, setData] = useState<Array<InventoryData>>([]);
 

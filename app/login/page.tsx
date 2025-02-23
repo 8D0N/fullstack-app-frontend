@@ -1,5 +1,6 @@
 'use client'
 
+import axios from "../../plugins/axios";
 import {
     createTheme,
     Box,
@@ -27,23 +28,26 @@ export default function Page() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const [authError, setAuthError] = useState("");
     const router = useRouter();
-
     const defaultTheme = createTheme();
-
     const onSubmit = (event: any): void => {
         const data: FormData = {
             username: event.username,
             password: event.password,
         };
-
         handleLogin(data);
     };
-
-
     const handleLogin = (data: FormData) => {
-        router.push("/inventory/products");
-    };
+        axios
+            .post("/api/inventory/login", data)
+            .then((response) => {
+                router.push("/inventory/products");
+            })
+            .catch(function (error) {
+                setAuthError("ユーザ名またはパスワードに誤りがあります")
+            });
+    }
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -61,6 +65,11 @@ export default function Page() {
                         ログイン
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+                        {authError && (
+                            <Typography variant='body2' color='error'>
+                                {authError}
+                            </Typography>
+                        )}{" "}
                         <TextField
                             type="text"
                             id="username"

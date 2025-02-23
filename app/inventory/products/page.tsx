@@ -1,5 +1,6 @@
 'use client'
 
+import axios from "../../../plugins/axios";
 import {
     Alert,
     AlertColor,
@@ -60,7 +61,11 @@ export default function Page() {
     };
 
     useEffect(() => {
-        setData(productsData);
+        axios.get('/api/inventory/products')
+            .then((res) => res.data)
+            .then((data) => {
+                setData(data)
+            })
     }, [open])
 
     // 登録データを保持
@@ -103,7 +108,9 @@ export default function Page() {
         setId(0);
     };
     const handleAdd = (data: ProductData) => {
-        result('success', '商品が登録されました')
+        axios.post("/api/inventory/products", data).then((response) => {
+            result('success', '商品が登録されました')
+        });
         setId(0);
     };
 
@@ -121,11 +128,15 @@ export default function Page() {
         setId(0);
     };
     const handleEdit = (data: ProductData) => {
-        result('success', '商品が更新されました')
+        axios.put(`/api/inventory/products/${data.id}`, data).then((response) => {
+            result('success', '商品が更新されました')
+        });
         setId(0);
     };
     const handleDelete = (id: number) => {
-        result('success', '商品が削除されました')
+        axios.delete(`/api/inventory/products/${id}`).then((response) => {
+            result('success', '商品が削除されました')
+        });
         setId(0);
     };
 
